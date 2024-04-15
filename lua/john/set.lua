@@ -22,9 +22,12 @@ vim.opt.scrolloff = 8
 
 vim.g.mapleader = " "
 
-local autosave = function()
-    if not vim.bo.readonly and vim.bo.modifiable then
-        vim.cmd('write')
+local function autosave()
+    if vim.bo.buftype == 'normal' and not vim.bo.readonly and vim.bo.modifiable then
+        local success, err = pcall(vim.cmd, 'write')
+        if not success then
+            vim.notify("Autosave failed: " .. err, vim.log.levels.ERROR)
+        end
     end
 end
 
