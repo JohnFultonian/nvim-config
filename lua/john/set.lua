@@ -21,3 +21,15 @@ vim.opt.incsearch = true
 vim.opt.scrolloff = 8
 
 vim.g.mapleader = " "
+
+local autosave = function()
+    if not vim.bo.readonly and vim.bo.modifiable then
+        vim.cmd('write')
+    end
+end
+
+
+vim.api.nvim_create_autocmd({"TextChanged", "TextChangedI"}, {
+    pattern = "*",
+    callback = autosave,
+})
