@@ -43,7 +43,7 @@ end)
 -- here you can setup the language servers
 require('mason').setup({})
 require('mason-lspconfig').setup({
-	ensure_installed = { 'tsserver', 'tsserver', 'terraformls', 'lua_ls', 'yamlls', 'html', 'jsonls', 'jedi_language_server' },
+	ensure_installed = { 'ts_ls', 'terraformls', 'lua_ls', 'yamlls', 'html', 'jsonls', 'jedi_language_server' },
 	handlers = {
 		function(server_name)
 			require('lspconfig')[server_name].setup({})
